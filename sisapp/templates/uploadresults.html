@@ -1,0 +1,231 @@
+{% extends 'base.html' %}
+{% block uploadresults %}
+<style>
+    input {
+        border-style: ridge;
+        border-radius: 1px;
+    }
+</style>
+
+<div class="container">
+    <form class="row" action="" method="POST" id="uploadform">
+        {% csrf_token %}
+        <div class="mb-3 col-md-6">
+            <label for="exampleInputEmail1" class="form-label">Select level</label>
+            <!-- <input type="search" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <div id="emailHelp" class="form-text"></div> -->
+            <select id="levelselect" name="levelselect" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected>Open this select level</option>
+                <!-- <option value="1">One</option>
+                <option value="2">Two</option>
+                <option value="3">Three</option> -->
+                <option value="Basic 1 term 1">Primary 1 term 1</option>
+                <option value="Basic 1 term 2">Primary 1 term 2</option>
+                <option value="Basic 1 term 3">Primary 1 term 3</option>
+                <option value="Basic 2 term 1">Primary 2 term 1</option>
+                <option value="Basic 2 term 2">Primary 2 term 2</option>
+                <option value="Basic 2 term 3">Primary 2 term 3</option>
+                <option value="Basic 3 term 1">Primary 3 term 1</option>
+                <option value="Basic 3 term 2">Primary 3 term 2</option>
+                <option value="Basic 3 term 3">Primary 3 term 3</option>
+                <option value="Basic 4 term 1">Primary 4 term 1</option>
+                <option value="Basic 4 term 2">Primary 4 term 2</option>
+                <option value="Basic 4 term 3">Primary 4 term 3</option>
+                <option value="Basic 5 term 1">Primary 5 term 1</option>
+                <option value="Basic 5 term 2">Primary 5 term 2</option>
+                <option value="Basic 5 term 3">Primary 5 term 3</option>
+                <option value="Basic 6 term 1">Primary 6 term 1</option>
+                <option value="Basic 6 term 2">Primary 6 term 2</option>
+                <option value="Basic 6 term 3">Primary 6 term 3</option>
+                <option value="Basic 7 term 1">JHS 1 term 1</option>
+                <option value="Basic 7 term 2">JHS 1 term 2</option>
+                <option value="Basic 7 term 3">JHS 1 term 3</option>
+                <option value="Basic 8 term 1">JHS 2 term 1</option>
+                <option value="Basic 8 term 2">JHS 2 term 2</option>
+                <option value="Basic 8 term 3">JHS 2 term 3</option>
+                <option value="Basic 9 term 1">JHS 3 term 1</option>
+                <option value="Basic 9 term 2">JHS 3 term 2</option>
+                <option value="Basic 9 term 3">JHS 3 term 3</option>
+            </select>
+        </div>
+        <div class="mb-3 col-md-6">
+            <label for="exampleInputEmail1" class="form-label">Select a subject</label>
+            <select id="subjects" name="" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected>Open this select subject</option>
+                {% for subject in subjects %}
+                <option value="{{subject.code}}">{{subject.title}}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
+    </form>
+    <div id="messages">
+
+    </div>
+    <!-- Shop Cart Section Begin -->
+    {% csrf_token %}
+    <section class="shop-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Class Score</th>
+                                    <th>Exam Score</th>
+                                    <th>Total Score</th>
+                                    <th>Position</th>
+                                    <!-- <th></th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for student in students %}
+                                <tr>
+                                    <td class="cart__product__item">
+                                        <div class="cart__product__item__title">
+                                            <h6>{{student.username}}</h6>
+                                        </div>
+                                    </td>
+                                    <td class="cart__quantity">
+                                        <div class="pro-qty">
+                                            <input type="number">
+                                        </div>
+                                    </td>
+                                    <td class="cart__quantity">
+                                        <div class="pro-qty">
+                                            <input class="form-control" type="number">
+                                        </div>
+                                    </td>
+                                    <td class="cart__quantity">
+                                        <div class="pro-qty">
+                                            <input type="number">
+                                        </div>
+                                    <td class="cart__quantity">
+                                        <div class="pro-qty">
+                                            <input type="text">
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}           
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="saveresults" class="btn btn-primary" type="button">Upload results</button>
+        </div>
+    </section>
+    <!-- Shop Cart Section End -->
+</div>
+
+<script>
+    // console.log(document.getElementById('levelselect').value.substr(5))
+    console.log(document.getElementById('subjects').value)
+    document.getElementById('subjects').onchange = function(){
+        console.log(this.value)
+    }
+    // console.log(document.getElementById('levelselect').value)
+    document.getElementById('levelselect').onchange = function(){
+        console.log(document.getElementById('levelselect').value)
+        document.getElementById('uploadform').submit()
+    }
+    console.log('{{level}}')
+    if("{{level}}" == "None"){
+        document.getElementById('levelselect').selectedIndex = 0;
+        document.getElementById('saveresults').disabled = true
+    } else {
+        document.getElementById('levelselect').value = "{{level}}";
+    }
+
+    document.getElementById('saveresults').onclick = function(){
+        $('#messages div').each(function(){
+            $(this).remove()
+        });
+        
+        // console.log(this)
+        if (document.getElementById('subjects').value == "Open this select subject"){
+            // console.log("noooo")
+            alert('please select a subject')
+        } else{
+            $('tbody tr').each(function(){
+                // var student = $(this)[0].firstElementChild.innerText
+                var student = $(this)[0].firstElementChild.innerText
+                // $(this)[0].children[0].children[0].children[1].value
+                console.log(student)
+                var classSore = $(this)[0].children[1].childNodes[1].childNodes[1].value
+                var examscore = $(this)[0].children[2].childNodes[1].childNodes[1].value
+                var totalScore = $(this)[0].children[3].childNodes[1].childNodes[1].value
+                var position = $(this)[0].children[4].childNodes[1].childNodes[1].value
+                var level = document.getElementById('levelselect').value
+                // if (document.getElementById('levelselect').value.substr(0,7) == 'Primary'){
+                //     var str = document.getElementById('levelselect').value
+                //     var rep = /Primary/g
+                //     var level = str.replace(rep, "Basic")
+                // } else {
+                //     if(document.getElementById('levelselect').value.substr(0,5) == "JHS 1"){
+                //         var str = document.getElementById('levelselect').value
+                //         var rep = /JHS 1/g
+                //         var level = str.replace(rep, "Basic 7")
+                //     } else if(document.getElementById('levelselect').value.substr(0,5) == "JHS 2"){
+                //         var str = document.getElementById('levelselect').value
+                //         var rep = /JHS 2/g
+                //         var level = str.replace(rep, "Basic 8")
+                //     } else if(document.getElementById('levelselect').value.substr(0,5) == "JHS 3"){
+                //         var str = document.getElementById('levelselect').value
+                //         var rep = /JHS 3/g
+                //         var level = str.replace(rep, "Basic 9")
+                //     }
+                // }
+                $.ajax({
+                    url: "{% url 'sisapp:saveresults' %}",
+                    type: "POST",
+                    data: {
+                        student: student,
+                        classSore: classSore,
+                        examscore: examscore,
+                        totalScore: totalScore,
+                        position:position,
+                        level: level,
+                        subject: document.getElementById('subjects').value,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    },
+                    dataType: 'json',
+                    success: function(response){
+                        console.log(response.message)
+                        if (response.message.toString() == "successfully saved"){
+                            $('#messages').append('\
+                                <div class="alert alert-success" role="alert">\
+                                    '+response.student+' details saved successfully\
+                                </div>\
+                            ')
+                            
+                            $('tbody tr').each(function(){
+                                var tr = $(this)
+                                var student = $(this)[0].firstElementChild.innerText
+                               
+                                if (student.toString() == response.student.toString()){
+                                    // tr.remove()
+                                }
+                            });
+                        } else {
+                            $('#messages').append('\
+                                <div class="alert alert-danger" role="alert">\
+                                    '+response.message+'\
+                                </div>\
+                            ')
+                        }
+                    }
+                });
+            });
+        }
+    }
+
+    // $('tbody tr').each(function(){
+    //     console.log($(this)[0].cells[3])
+    // });
+</script>
+{% endblock %}

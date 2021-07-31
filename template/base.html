@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	
+	<link rel="stylesheet" href="{% static 'css/style.css' %}">
+	<link rel="stylesheet" href="{% static 'css/accstyle.css' %}">
+	<link rel="stylesheet" href="{% static 'css/forms.css' %}">
+	<script type="text/javascript" src="{% static 'js/script.js' %}"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+    <style>
+        .topest {
+            /*background-color: #6f42c1;
+            min-height: 70px;
+            /* background-image: url('images.jpg'); */
+            /*background-repeat: no-repeat;*/
+            
+            height: 90px;
+            background: black;
+            overflow: hidden;
+            background: #6f42c1;  /* fallback colour. Make sure this is just one solid colour. */
+            background: -webkit-linear-gradient(#6f42c1, rgba(220, 225, 231, 0.8)), url("i/static/mg/images.jpg");
+            background: linear-gradient(#2a0869, rgba(126, 177, 228, 0.8)), url("/static/img/images.jpg"); /* The least supported option. */
+        }
+    </style>
+</head>
+<body>
+	<!-- Background top -->
+	<div class="topest">
+		<!-- <img src="images.jpg"/> -->
+		<h1>Student Information System</h1>
+	</div>
+	<div class="bar" ></div>
+	<!-- Navbar -->
+	<div class="topnav" id="myTopnav">
+		<a href="#" class="menu" onclick="">Menu</a>
+		<a href="/" class="">Home</a>
+		<a href="{% url 'sisapp:personalinfo' %}" class="">Personal information</a>
+		<!-- <a href="personalacc.html">Personal account</a> -->
+		<div class="dropdown">
+			<button class="dropbtn">Accounts
+			  <i class="fa fa-caret-down"></i>
+			</button>
+			<div class="dropdown-content">
+			  {% if request.user.is_student %}
+			  <a href="{%url 'sisapp:personalacc' %}">Personal account</a>
+			  <a href="{% url 'sisapp:payments' %}">Make payments</a>
+			  {% elif request.user.is_admin %}
+			  <a href="{%url 'sisapp:personalacc' %}">Personal account</a>
+			  <!-- <a href="{% url 'sisapp:payments' %}">Make payments</a> -->
+			  {% endif %}
+			</div>
+		</div>
+		{% if request.user.is_student %}
+			<a href="{% url 'sisapp:publishedres' %}">Published results</a>
+		{% endif %}
+		{% if request.user.is_admin %}
+			<a href="{% url 'sisapp:message' %}">Message</a>
+			<a href="{% url 'sisapp:uploadresults' %}">Upload results</a>
+			<a href="{% url 'sisapp:stdterm' %}">Results</a>
+		{% endif %}
+		<div class="dropdown">
+		  <button class="dropbtn">Settings
+			<i class="fa fa-caret-down"></i>
+		  </button>
+		  <div class="dropdown-content">
+			<a href="{% url 'changepassword' %}">Change Password</a>
+			<a href="{% url 'signout' %}">
+				<i class="fa fa-sign-out" aria-hidden="true" style="font-size: 2rem; color: cornflowerblue;"></i>
+				Logout
+			</a>
+			{% if request.user.is_admin %}
+			<a href="{% url 'signupform' %}">Add a user</a>
+			{% endif %}
+			<a href="{% url 'editprofile' %}">Edit Profile</a>
+		  </div>
+		</div>
+		<!-- <a href="#about">About</a> -->
+		<a href="javascript:void(0);" class="icon" onclick="myFunction()">&#9776;</a>
+	</div>
+
+    {% block index %}
+    {% endblock %}
+
+    {% block personalacc %}
+    {% endblock %}
+
+    {% block personalinfo %}
+    {% endblock %}
+
+    {% block publishedres %}
+    {% endblock %}
+
+    {% block success%}
+    {% endblock %}
+
+    {% block changepassword %}
+    {% endblock %}
+
+    {% block editprofile %}
+    {% endblock %}
+
+	{% block message %}
+    {% endblock %}
+
+	{% block uploadresults %}
+	{% endblock %}
+
+	{% block stdterm %}
+	{% endblock %}
+</body>
+</html>

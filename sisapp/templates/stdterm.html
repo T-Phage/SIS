@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block stdterm %}
+{% load my_filter %}
+<div class="container">
+    <form class="row" action="" method="POST" id="uploadform">
+        {% csrf_token %}
+        <div class="mb-3 col-md-6">
+            <label for="exampleInputEmail1" class="form-label">Select level</label>
+            <select id="levelselect" name="levelselect" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected>Open this select level</option>
+                <option value="Basic 1">Primary 1</option>
+                <option value="Basic 2">Primary 2</option>
+                <option value="Basic 3">Primary 3</option>
+                <option value="Basic 4">Primary 4</option>
+                <option value="Basic 5">Primary 5</option>
+                <option value="Basic 6">Primary 6</option>
+                <option value="Basic 7">JHS 1</option>
+                <option value="Basic 8">JHS 2</option>
+                <option value="Basic 9">JHS 3</option>
+            </select>
+        </div>
+    </form>
+    
+    <!-- Shop Cart Section Begin -->
+    {% csrf_token %}
+    <section class="shop-cart spad">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="shop__cart__table">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Student</th>
+                                    <th>Class</th>
+                                    <th>Average</th>
+                                    <th></th>
+                                    <th>Status</th>
+                                    <!-- <th></th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for user in results %}
+                                <tr>
+                                    <td class="cart__product__item">
+                                        <div class="cart__product__item__title">
+                                            <h6>{{user.firstname}}</h6>
+                                        </div>
+                                    </td>
+                                    <td class="cart__product__item">
+                                        <div class="">
+                                            <!-- <input type="text" value="{{result.student.level}}"> -->
+                                            <h6>{{user.level|levelname}}</h6>
+                                        </div>
+                                    </td>
+                                    <td class="cart__product__item">
+                                        <div class="">
+                                            <h6>{% for re in res %}{% if re.student|to_string == user.firstname|to_string %}{{re.average}} {% endif %}{% endfor %}</h6>
+                                        </div>
+                                    </td>
+                                    <td class="cart__product__item">
+                                        <div class="">
+                                            <!-- <input type="text"> -->
+                                            <!-- <button class="btn btn-danger" type="button">Repeat</button> -->
+                                        </div>
+                                    </td>
+                                    <td class="cart__product__item">
+                                        <div class="">
+                                            <!-- <input type="text"> -->
+                                            {%for i in res %}{% if i.student|to_string == user.firstname|to_string %}{% if i.average > 100.0 %}
+                                            <button class="btn btn-success" type="button">Promoted</button>
+                                            {%else%}<button class="btn btn-danger" type="button">Repeated</button>
+                                            {% endif %}{% endif %}{% endfor %}
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}   
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="promote" class="btn btn-primary" type="button">Proceed Promotions</button>
+        </div>
+    </section>
+    <!-- Shop Cart Section End -->
+</div>
+
+<script>
+
+    document.getElementById('levelselect').onchange = function(){
+        console.log(document.getElementById('levelselect').value)
+        document.getElementById('uploadform').submit()
+    }
+    console.log('{{level}}')
+    if("{{level}}" == "None"){
+        document.getElementById('levelselect').selectedIndex = 0;
+    } else {
+        document.getElementById('levelselect').value = "{{level}}";
+    }
+
+    document.getElementById('promote').onclick = function(){
+        $('tbody tr').each(function(){
+            var student = $(this)[0].firstElementChild.innerText
+            var status = $(this)[0].cells[4].innerText
+            console.log(student)
+            console.log(status)
+            if (status.toString() == 'Promoted'){
+                $.ajax({
+                    url: "{% url 'sisapp:promote' %}",
+                    type: "POST",
+                    data: {
+                        student: student,
+                        status: status,
+                        csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken]').val(),
+                    },
+                    dataType: 'json',
+                    success: function(response){
+                        $('tbody tr').each(function(){
+                            if($(this)[0].firstElementChild.innerText.toString() == response.message.toString() || status.toString() == 'Repeated'){
+                                $(this).remove();
+                            }
+                        });
+                    }
+                });
+            }
+        });
+    }
+
+</script>
+{% endblock %}

@@ -1,0 +1,222 @@
+{% extends 'base.html' %}
+{% block message %}
+    <style>
+		.contact-list {
+			height: 0px;
+			transition: 0.5s;
+			background-color: aliceblue;
+			overflow-x: scroll;
+		}
+
+		textarea {
+			height: 190px;
+			resize: none;
+		}
+
+        .active{
+            background-color: white;
+        }
+
+	</style>
+</head>
+<body>
+
+<!-- <form id="myform" method="POST">  -->
+<!-- action="https://apps.mnotify.net/smsapi?key=xxxxxxxxxx&to=xxxxxxx&msg=xxxxxxxx&sender_id=xxxxx"> -->
+<!-- <input type="text" id="key" value="" placeholder="key"/> -->
+<!-- <input type="text" id="to" placeholder="to"/> -->
+<!-- <textarea id="message" placeholder="message"></textarea> -->
+<!-- <input type="text" id="sender_id" placeholder="sender id"/> -->
+<!-- <input type="button" onclick="consolefunc()" value="Submit"/> -->
+<div class="container-fuid">
+    <div class="row border-top border-bottom text-center">
+        <h4 class="text-muted">SMS Message</h4>
+    </div>
+
+    <div class="container">
+        <span class="text-muted">Send to:</span>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="nav-item">
+            <div class="nav-link active" data-toggle="tab" id="allcontacts">All contacts</div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link" data-toggle="tab" id="sel">Selected contacts</div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link" data-toggle="tab" id="staff">All staff members</div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link" data-toggle="tab" id="selStaff" href="#">Selected staff members</div>
+          </li>
+          <li class="nav-item">
+            <div class="nav-link" data-toggle="tab" id="personal" href="#">Personal sms</div>
+          </li>
+        </ul>
+    
+        <!-- Tab panes -->
+        <div class="tab-content">
+            <div class="container">
+                
+                <div class="row">
+                    <!-- <button class="col-4" onclick="expand()" type="button">Selected contacts</button>  -->
+                    <!-- <button class="col-4" type="button">All contacts</button>  -->
+                    <!-- <div class="btn-group" role="group" aria-label="Basic example"> -->
+                        <!-- <button type="button" class="btn btn-outline-primary" onclick="expand()">Selected contacts</button> -->
+                        <!-- <button type="button" class="btn btn-outline-primary">All contacts</button> -->
+                        <!-- <button type="button" class="btn btn-primary">Right</button> -->
+                    <!-- </div> -->
+                </div>
+                <div class="row">
+                    <form id="myform" method="POST">
+                        <div class="mb-3">
+                            <label for="to" class="form-label">Recipient</label>
+                            <input id="to"  onkeyup="compress()" onfocus="expand()" placeholder="to" type="text" class="form-control" aria-describedby="emailHelp">
+                             <!-- value="{% for user in users %}{{user.guardian.phone}},{% endfor %}"> -->
+                            <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
+                            <p id="numberror" style="color: tomato;display: none;">Field should contain numbers only</p>
+                            <div class="form-text contact-list border" id="emailHelp contactlist">
+                                <li class="list-group-item list-group-item-action"><input type="search" id="search" placeholder="search"></li>
+                                <ul id="list" class="list-group list-group-flush">
+                                    {% for user in users %}
+                                    <li id="student" class="list-group-item list-group-item-action">{{user.firstname}} {{user.lastname}} <span>{{user.guardian.phone}}</span></li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="message" class="form-label">Message</label>
+                            <textarea onfocus="compress()" class="form-control" id="message" placeholder="Type message content here"></textarea>
+                        </div>
+                        <!-- <div class="mb-3 form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                        </div> -->
+                        <div class="modal-footer">
+                            <button type="button" onclick="consolefunc()"  class="btn btn-primary btnSubmit">Send message</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+        var allstd = "{% for user in users %}{{user.guardian.phone}},{% endfor %}"
+        // console.log(allstd)
+        document.getElementById('to').defaultValue = allstd
+        document.getElementById('to').readOnly = true; 
+        console.log(document.getElementById('to'))
+
+        document.getElementById('allcontacts').onclick = function() {
+            this.classList.add('active');
+            document.getElementById('sel').classList.remove('active');
+            document.getElementById('staff').classList.remove('active');
+            document.getElementById('selStaff').classList.remove('active');
+            document.getElementById('personal').classList.remove('active');
+            document.getElementById('to').defaultValue = allstd
+            document.getElementById('to').readOnly = true; 
+            compress()
+        }
+
+        document.getElementById('sel').onclick = function() {
+            this.classList.add('active');
+            document.getElementById('allcontacts').classList.remove('active');
+            document.getElementById('staff').classList.remove('active');
+            document.getElementById('selStaff').classList.remove('active');
+            document.getElementById('personal').classList.remove('active');
+            // document.getElementById('to').defaultValue = allstd
+            document.getElementById('to').readOnly = true; 
+        }
+
+        document.getElementById('selStaff').onclick = function() {
+            this.classList.add('active');
+            document.getElementById('allcontacts').classList.remove('active');
+            document.getElementById('staff').classList.remove('active');
+            document.getElementById('sel').classList.remove('active');
+            document.getElementById('personal').classList.remove('active');
+            // document.getElementById('to').defaultValue = allstd
+            document.getElementById('to').readOnly = true; 
+        }
+        
+        document.getElementById('staff').onclick = function() {
+            this.classList.add('active');
+            document.getElementById('allcontacts').classList.remove('active');
+            document.getElementById('selStaff').classList.remove('active');
+            document.getElementById('sel').classList.remove('active');
+            document.getElementById('personal').classList.remove('active');
+            // document.getElementById('to').defaultValue = allstd
+            document.getElementById('to').readOnly = true; 
+            compress()
+        }
+
+        document.getElementById('personal').onclick = function() {
+            this.classList.add('active');
+            document.getElementById('allcontacts').classList.remove('active');
+            document.getElementById('staff').classList.remove('active');
+            document.getElementById('sel').classList.remove('active');
+            document.getElementById('selStaff').classList.remove('active');
+            // document.getElementById('to').defaultValue = allstd
+            document.getElementById('to').readOnly = false; 
+            compress()
+        }
+
+		document.getElementById('search').value = ""
+        document.getElementById('to').value = ""
+
+        $('#search').on('keyup', function(){
+            $('#list').toggle()
+            var value = $(this).val().toLowerCase();
+            // console.log(value)
+            $('#list #student').filter(function(){
+                // console.log($(this)[0].textContent)
+                $(this).toggle($(this)[0].textContent.toLowerCase().indexOf(value) > -1)
+            });
+
+            if($(this).empty){
+                $('#list #student').show()
+            }
+        });
+
+        $('#list #student').each(function(){
+            $(this).on('click', function(){
+                console.log($(this)[0].children[0].innerHTML)
+                if($('#to')[0].value == ""){
+                    $('#to')[0].value = $(this)[0].children[0].innerHTML
+                } else {
+                    var value = $('#to')[0].value + "," + $(this)[0].children[0].innerHTML
+                    $('#to')[0].value = value;
+                }
+            });
+        });
+	</script>
+{% endblock %}
+
+<div class="container">
+    <br />
+    <br />
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" data-toggle="tab" href="#home">Assign Task </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="tab" href="#mytasks">My Tasks</a>
+      </li>
+    </ul>
+
+    <!-- Tab panes -->
+    <div class="tab-content">
+      <div id="home" class="container tab-pane active"><br>
+        <br />
+        <br />
+        <br />
+
+      </div>
+      <div id="mytasks" class="container tab-pane fade">
+          
+      </div>
+    </div>
+</div>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+</head>
+<body>
+
+  <form>
+    <script src="https://checkout.flutterwave.com/v3.js"></script>
+    <!-- <button type="button" onClick="makePayment()">Pay Now</button> -->
+    
+  </form>
+  {% csrf_token %}
+  <script>
+    // console.log(parseInt("{{request.user.id}}"))
+   
+    makePayment()
+    function makePayment() {
+      FlutterwaveCheckout({
+        public_key: "FLWPUBK-66106623098f258c4726fa3ea93bcf8e-X",
+        tx_ref: "hooli-tx-1920bbtyt",
+        amount: 1.00,
+        currency: "GHS",
+        country: "GH",
+        payment_options: "card, mobilemoneyghana, ussd",
+        redirect_url: "" ,// specified redirect URL
+          // "https://callbacks.piedpiper.com/flutterwave.aspx?ismobile=34",
+        meta: {
+          consumer_id: parseInt("{{request.user.id}}"),
+          consumer_mac: "92a3-912ba-1192a",
+        },
+        customer: {
+          email: "{{request.user.email}}",
+          phone_number: "08102909304",
+          name: "{{request.user.username}}",
+        },
+        callback: function (data) {
+          console.log(data);
+          // console.log(data.amount)
+          // console.log(data.currency)
+          // console.log(data.customer.email)
+          // console.log(data.customer.name)
+          // console.log(data.customer.phone_number)
+          // console.log(data.flw_ref)
+          // console.log(data.transaction_id)
+          // // console.log(data.tx_ref)
+          // console.log(data.amount)
+          console.log(data.status)
+          if(data.status == 'successful'){
+            $.ajax({
+              url: "{% url 'sisapp:savepayments' %}",
+              type: "POST",
+              data: {
+                amount: data.amount,
+                currency: data.currency,
+                student: data.customer,
+                mobile: data.phone_number,
+                flw_ref: data.flw_ref,
+                transaction_id: data.transaction_id,
+                csrfmiddletoken: $('input[name=csrfmiddlewaretoken]').val(),
+              },
+              dataType: 'json',
+              success: function(response){
+                
+              }
+            });
+          }
+        },
+        onclose: function() {
+          // close modal
+          window.history.back();
+        },
+        customizations: {
+          title: "App Sch",
+          description: "Payment of school fees",
+          logo: "https://assets.piedpiper.com/logo.png",
+        },
+      });
+    }
+  </script>
+
+<!-- {
+  "account_bank": "MTN",
+  "account_number": "233542773934",
+  "amount": 50,
+  "narration": "New GHS momo transfer",
+  "currency": "GHS",
+  "reference": "new-ghs-momo-transfer",
+  "beneficiary_name": "Kwame Adew"
+} -->
+</body>
+</html>
+  

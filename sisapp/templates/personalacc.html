@@ -1,0 +1,253 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block personalacc %}
+    <!-- main body -->
+	<div style="min-height: 20px;"></div>
+	<div class="container">
+		<div class="row border">
+            
+            <div class="section">
+                <div class="section__title">Transactions</div> 
+                <!-- <div class="section__title">Make Payment</div>  -->
+                <div class="section__content">
+                    <div class="panel">
+                        <div class="panel__content">
+                            <div>
+                                <div>
+                                    <div class="table table--padded">
+                                        <div class="table__section table__section--head">
+                                            <div class="table__row">
+                                                <div class="table__header">Status</div> 
+                                                <div class="table__header">Description</div> 
+                                                <div class="table__header">Amount</div> 
+                                                <div class="table__header">Type</div> 
+                                                <div class="table__header">Date</div> 
+                                                <div class="table__header table__action"></div>
+                                            </div>
+                                        </div> 
+                                        <!-- <div class="table__section table__section--body">
+                                            <div class="table__row hidden--xs">
+                                                <div class="table__data table__data--status">
+                                                    <span class="tag tag--yellow">Cancelled</span>
+                                                </div> 
+                                                <div class="table__data hidden--xs">Techne Enterpreneurs</div> 
+                                                <div class="table__data table__data--full">
+                                                    <p class="table__data--main">GHS82.00</p> 
+                                                    <p class="show--xs table__data--extra">mobilemoneygh</p>
+                                                </div> 
+                                                <div class="table__data hidden--xs">Mobilemoneygh</div> 
+                                                <div class="table__data table__data--right">
+                                                    <p class="table__data--value">8th October 2020</p> 
+                                                    <div class="show--xs table__data--moreicon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14">
+                                                            <path fill="#1E2852" fill-rule="nonzero" d="M6.885 6.707L.667.121a.376.376 0 0 0-.553 0 .432.432 0 0 0 0 .586L6.056 7 .114 13.293a.432.432 0 0 0 0 .586.378.378 0 0 0 .553 0l6.217-6.586a.43.43 0 0 0 .001-.586z"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table__row hidden--xs">
+                                                <div class="table__data table__data--status">
+                                                    <span class="tag tag--green">Successful</span>
+                                                </div> 
+                                                <div class="table__data hidden--xs">Payment from <span style="font-weight: 600;">samuelgyamfi824@gmail.com</span></div> 
+                                                <div class="table__data table__data--full"><p class="table__data--main">GHS1.00</p> 
+                                                    <p class="show--xs table__data--extra">mobilemoneygh</p>
+                                                </div> 
+                                                <div class="table__data hidden--xs">Mobilemoneygh</div> 
+                                                <div class="table__data table__data--right">
+                                                    <p class="table__data--value">29th September 2020</p> 
+                                                    <div class="show--xs table__data--moreicon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14">
+                                                            <path fill="#1E2852" fill-rule="nonzero" d="M6.885 6.707L.667.121a.376.376 0 0 0-.553 0 .432.432 0 0 0 0 .586L6.056 7 .114 13.293a.432.432 0 0 0 0 .586.378.378 0 0 0 .553 0l6.217-6.586a.43.43 0 0 0 .001-.586z"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table__row hidden--xs">
+                                                <div class="table__data table__data--status">
+                                                    <span class="tag tag--yellow">Cancelled</span>
+                                                </div>
+                                                <div class="table__data hidden--xs">Techne Enterpreneurs</div> 
+                                                <div class="table__data table__data--full">
+                                                    <p class="table__data--main">GHS1.00</p> 
+                                                    <p class="show--xs table__data--extra">mobilemoneygh</p>
+                                                </div> 
+                                                <div class="table__data hidden--xs">Mobilemoneygh</div> 
+                                                <div class="table__data table__data--right">
+                                                    <p class="table__data--value">29th September 2020</p> 
+                                                    <div class="show--xs table__data--moreicon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14">
+                                                            <path fill="#1E2852" fill-rule="nonzero" d="M6.885 6.707L.667.121a.376.376 0 0 0-.553 0 .432.432 0 0 0 0 .586L6.056 7 .114 13.293a.432.432 0 0 0 0 .586.378.378 0 0 0 .553 0l6.217-6.586a.43.43 0 0 0 .001-.586z"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="table__row hidden--xs">
+                                                <div class="table__data table__data--status">
+                                                    <span class="tag tag--green">Successful</span>
+                                                </div> 
+                                                <div class="table__data hidden--xs">Payment from <span style="font-weight: 600;">samuelgyamfi824@gmail.com</span></div> 
+                                                <div class="table__data table__data--full">
+                                                    <p class="table__data--main">GHS1.00</p> 
+                                                    <p class="show--xs table__data--extra">mobilemoneygh</p>
+                                                </div> 
+                                                <div class="table__data hidden--xs">Mobilemoneygh</div> 
+                                                <div class="table__data table__data--right">
+                                                    <p class="table__data--value">29th September 2020</p> 
+                                                    <div class="show--xs table__data--moreicon">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14">
+                                                            <path fill="#1E2852" fill-rule="nonzero" d="M6.885 6.707L.667.121a.376.376 0 0 0-.553 0 .432.432 0 0 0 0 .586L6.056 7 .114 13.293a.432.432 0 0 0 0 .586.378.378 0 0 0 .553 0l6.217-6.586a.43.43 0 0 0 .001-.586z"></path>
+                                                        </svg>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!----> 
+                                            <!-- <div class="show--xs">
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Status</div> 
+                                                        <div class="customer-info__item__value">
+                                                            <span class="tag tag--yellow">Cancelled</span>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Date Created</div> 
+                                                        <div class="customer-info__item__value">8th October 2020</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Description</div> 
+                                                        <div class="customer-info__item__value">Techne Enterpreneurs</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Price</div> 
+                                                        <div class="customer-info__item__value">GHS82.00</div>
+                                                    </div> 
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Payment Type</div> 
+                                                        <div class="customer-info__item__value">Mobilemoneygh</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="show--xs">
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Status</div> 
+                                                        <div class="customer-info__item__value">
+                                                            <span class="tag tag--green">Successful</span>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Date Created</div> 
+                                                        <div class="customer-info__item__value">29th September 2020</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Description</div> 
+                                                        <div class="customer-info__item__value">Payment from <span style="font-weight: 600;">samuelgyamfi824@gmail.com</span></div>
+                                                    </div>
+                                                </div> 
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Price</div> 
+                                                        <div class="customer-info__item__value">GHS1.00</div>
+                                                    </div> 
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Payment Type</div> 
+                                                        <div class="customer-info__item__value">Mobilemoneygh</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="show--xs">
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Status</div> 
+                                                        <div class="customer-info__item__value">
+                                                            <span class="tag tag--yellow">Cancelled</span>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Date Created</div> 
+                                                        <div class="customer-info__item__value">29th September 2020</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Description</div> 
+                                                        <div class="customer-info__item__value">Techne Enterpreneurs</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Price</div> 
+                                                        <div class="customer-info__item__value">GHS1.00</div>
+                                                    </div> 
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Payment Type</div> 
+                                                        <div class="customer-info__item__value">Mobilemoneygh</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="show--xs">
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Status</div> 
+                                                        <div class="customer-info__item__value">
+                                                            <span class="tag tag--green">Successful</span>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Date Created</div> 
+                                                        <div class="customer-info__item__value">29th September 2020</div>
+                                                    </div>
+                                                </div> 
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Description</div> 
+                                                        <div class="customer-info__item__value">Payment from 
+                                                            <span style="font-weight: 600;">samuelgyamfi824@gmail.com</span>
+                                                        </div>
+                                                    </div>
+                                                </div> 
+                                                <div class="customer-info__row">
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Price</div> 
+                                                        <div class="customer-info__item__value">GHS1.00</div>
+                                                    </div> 
+                                                    <div class="customer-info__item">
+                                                        <div class="customer-info__item__title">Payment Type</div> 
+                                                        <div class="customer-info__item__value">Mobilemoneygh</div>
+                                                    </div>
+                                                </div>
+                                            </div> -->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                            <!---->
+                                        </div>
+                                    </div> 
+                                    <!-- <div class="show-more hidden--xs">
+                                        <div class="show-more__text">Show More</div>
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+<!-- </body>
+</html> -->

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="{% static 'css/forms.css' %}">
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <style>
+        .signup-blk, .signup__field {
+            margin-bottom: 10px; 
+        }
+        .signup-blk, .signup__field label {
+            display: inline-block;
+            margin: 5px 0; 
+        }
+        .signup-blk, .signup__field {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div id="student">
+        <div class="login-section" style="padding-top: 0%;">
+            <div class="login-form-flutterwave-logo">
+                <h4>SIS</h4>
+            </div> 
+            <div class="login-section__logincontainer">
+                {% if message == "Profile details saved." %}
+                <div class="alert alert-success" role="alert">
+                    Profile details saved.
+                </div>
+                {% elif message ==  "An error occurred try some other time" %}
+                <div class="alert alert-danger" role="alert">
+                    An error occurred try some other time
+                </div>
+                {% endif %}
+                <form class="login-section__form" method="POST" autocomplete="off">
+                    {% csrf_token %}
+                    <div class="login-section__steps">
+                        <div class="login-section__steps">
+                            <div class="login-section__text text--big textCenter">Student details</div> 
+                            <div class="login-section__form__row textCenter">
+                                <label>Fullname :</label> <br />
+                                <input type="text" name="firstname" placeholder="Fullname" required="required" class="form__input form__input__login">
+                                <p style="color: red;" id="userexists">user already exists</p>
+                            </div> 
+                            <div class="login-section__form__row textCenter">
+                                <label>Email address :</label> <br />
+                                <input type="email" name="emailaddress" placeholder="Email Address" required="required" class="form__input form__input__login">
+                                <p style="color: red;" id="emailexists">this email already exists</p>
+                            </div>
+                            <div class="login-section__form__row textCenter">
+                                <label>Phone :</label> <br />
+                                <input type="number" name="phone" placeholder="mobile number" required="required" class="form__input form__input__login">
+                            </div>
+                            <div class="login-section__form__row textCenter">
+                                <label>Date of birth :</label> <br />
+                                <input type="date" name="date_of_birth" placeholder="Date of birth" required="required" class="form__input form__input__login">
+                            </div>
+                            <div class="login-section__form__row textCenter">
+                                <label>Year of Admission :</label> <br />
+                                <input type="text" name="yearOfadmission" placeholder="Year of Admission" required="required" class="form__input form__input__login">
+                            </div>
+                            <div data-v-f6b9c668="" class="signup__field login-section__form__row">
+                                <label data-v-f6b9c668="">Class Admitted :</label> 
+                                <div data-v-f6b9c668="" class="select login-section__form__row">
+                                    <select data-v-f6b9c668="" name="classAdmitted" name="" class="select__input">
+                                        <option data-v-f6b9c668="" value="Basic 1">Primary 1</option>
+                                        <option data-v-f6b9c668="" value="Basic 2">Primary 2</option>
+                                        <option data-v-f6b9c668="" value="Basic 3">Primary 3</option>
+                                        <option data-v-f6b9c668="" value="Basic 4">Primary 4</option>
+                                        <option data-v-f6b9c668="" value="Basic 5">Primary 5</option>
+                                        <option data-v-f6b9c668="" value="Basic 6">Primary 6</option>
+                                        <option data-v-f6b9c668="" value="Basic 7">JHS 1</option>
+                                        <option data-v-f6b9c668="" value="Basic 8">JHS 2</option>
+                                        <option data-v-f6b9c668="" value="Basic 9">JHS 3</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div data-v-f6b9c668="" class="signup__field">
+                                <label data-v-f6b9c668="">Class :</label> 
+                                <div data-v-f6b9c668="" class="select">
+                                    <select data-v-f6b9c668="" name="level" name="" class="select__input">
+                                        <option data-v-f6b9c668="" value="Basic 1">Primary 1</option>
+                                        <option data-v-f6b9c668="" value="Basic 2">Primary 2</option>
+                                        <option data-v-f6b9c668="" value="Basic 3">Primary 3</option>
+                                        <option data-v-f6b9c668="" value="Basic 4">Primary 4</option>
+                                        <option data-v-f6b9c668="" value="Basic 5">Primary 5</option>
+                                        <option data-v-f6b9c668="" value="Basic 6">Primary 6</option>
+                                        <option data-v-f6b9c668="" value="Basic 7">JHS 1</option>
+                                        <option data-v-f6b9c668="" value="Basic 8">JHS 2</option>
+                                        <option data-v-f6b9c668="" value="Basic 9">JHS 3</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div data-v-f6b9c668="" class="signup__field">
+                                <label data-v-f6b9c668="">Group</label> 
+                                <div data-v-f6b9c668="" class="select">
+                                    <select data-v-f6b9c668="" name="group" name="" class="select__input">
+                                        <option data-v-f6b9c668="" value="A">A</option>
+                                        <option data-v-f6b9c668="" value="B">B</option>
+                                        <option data-v-f6b9c668="" value="C">C</option>
+                                        <option data-v-f6b9c668="" value="D">D</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div data-v-f6b9c668="" class="signup__field">
+                                <label data-v-f6b9c668="">Gender</label> 
+                                <div data-v-f6b9c668="" class="select">
+                                    <select data-v-f6b9c668="" name="gender" name="" class="select__input">
+                                        <option data-v-f6b9c668="" value="male">Male</option>
+                                        <option data-v-f6b9c668="" value="female">Female</option>
+                                    </select> 
+                                </div>
+                            </div>
+                            <div class="login-section__form__row">
+                                <label>Password</label> <br />
+                                <input id="passwrd" name="password" placeholder="Password" required="required" type="password" class="form__input form__input__login"> 
+                                <div class="login-section__form__row--password">
+                                    <svg onclick="showpassword()" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 0 24 24" wnameth="24">
+                                        <path d="M0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0zm0 0h24v24H0z" fill="none"></path> 
+                                        <path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"></path>
+                                    </svg>
+                                </div>
+                            </div> 
+                            <div id="alert-danger" class="alert alert-danger" role="alert">
+                                username or email already exists
+                            </div>
+
+                            <!-- <div class="login-section__text text--big textCenter" name="studenterror" style="color: red;">Firstname or Lastname or phone fields should not be empty</div>  -->
+                            <div class="login-section__form__row--submit">
+                                <button id="signUp" type="submit" class="btn btn-primary btn--lg btn--block btn--fontRegular">Signup</button> 
+                            </div>
+
+                            <div style="text-align: center;padding-top: 23px;" class="login-section__form__row--submit">
+                                <a href="#" onclick="goBack()">Go Back</a>
+                            </div>
+                        </div>
+                    </div> 
+                    <!---->
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+        document.getElementById('userexists').style.display = 'none';
+        document.getElementById('emailexists').style.display = 'none';
+        document.getElementById('alert-danger').style.display = 'none'
+
+        document.getElementById('signUp').onclick = function(e){
+            
+            if (document.getElementById('userexists').style.display == 'block' || document.getElementById('emailexists').style.display == 'block' ){
+                e.preventDefault()
+                console.log("ok")
+                document.getElementById('alert-danger').style.display = 'block'
+            } 
+        }
+        $('input[name=firstname').keyup(function(){
+            var userValue = $(this).val()
+            console.log(userValue)
+            $.ajax({
+                url: "{% url 'doesuserexists' %}",
+                type: "POST",
+                data: {
+                    user: $(this).val(),
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken').val()
+                },
+                dataType: 'json',
+                success: function(response){
+                    console.log(response.message)
+                    if (response.message.toString() == "user already exists"){
+                        // $('#userexists').show()
+                        document.getElementById('userexists').style.display = 'block'
+                    } else {
+                        document.getElementById('userexists').style.display = 'none'
+                    }
+                }
+            });
+        });
+
+        $('input[type=email]').keyup(function(){
+            var emailValue = $(this).val()
+            console.log(emailValue)
+            $.ajax({
+                url: "{% url 'doesemailexists' %}",
+                type: "POST",
+                data: {
+                    email: emailValue,
+                    csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken').val()
+                },
+                dataType: 'json',
+                success: function(response){
+                    console.log(response.message)
+                    if (response.message.toString() == "email already exists"){
+                        // $('#userexists').show()
+                        document.getElementById('emailexists').style.display = 'block'
+                    } else {
+                        document.getElementById('emailexists').style.display = 'none'
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

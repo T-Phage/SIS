@@ -1,0 +1,332 @@
+/* importing boostrap icons */
+
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+/* Above navbar */
+.topest {
+	/*background-color: #6f42c1;
+	min-height: 70px;
+	/* background-image: url('images.jpg'); */
+	/*background-repeat: no-repeat;*/
+	
+	height: 90px;
+	background: black;
+	overflow: hidden;
+	background: #6f42c1;  /* fallback colour. Make sure this is just one solid colour. */
+	background: -webkit-linear-gradient(#6f42c1, rgba(220, 225, 231, 0.8)), url("img/images.jpg");
+	background: linear-gradient(#2a0869, rgba(126, 177, 228, 0.8)), url("img/images.jpg"); /* The least supported option. */
+}
+
+.topest h1 {
+	color: white;
+	padding: 20px 30px;
+}
+
+.bar {
+	min-height: 8px;
+}
+
+/* Navbar */
+
+/* Add a black background color to the top navigation */
+.topnav {
+	background-color: #333;
+	overflow: hidden;
+	/* min-height: 100px; */
+  }
+  
+  /* Style the links inside the navigation bar */
+  .topnav a {
+	float: left;
+	display: block;
+	color: #f2f2f2;
+	text-align: center;
+	padding: 14px 16px;
+	text-decoration: none;
+	font-size: 17px;
+	outline: 0 none transparent;
+	font-family: 'PT Sans', sans-serif;
+	color: #999;
+    line-height: 30px;
+    padding: 16px 10px 14px 10px;
+    position: relative;
+  }
+  
+  /* Add an active class to highlight the current page */
+  .active {
+	background-color: #4CAF50;
+	color: white;
+  }
+  
+  /* Hide the link that should open and close the topnav on small screens */
+  .topnav .icon {
+	display: none;
+  }
+  
+  .topnav .menu {
+	display: none;
+  }
+  
+  /* Dropdown container - needed to position the dropdown content */
+  .dropdown {
+	float: left;
+	overflow: hidden;
+  }
+  
+  /* Style the dropdown button to fit inside the topnav */
+  .dropdown .dropbtn {
+	font-size: 17px;
+	border: none;
+	outline: none;
+	color: white;
+	padding: 14px 16px;
+	background-color: inherit;
+	font-family: inherit;
+	margin: 0;
+	outline: 0 none transparent;
+	font-family: 'PT Sans', sans-serif;
+	color: #999;
+    line-height: 30px;
+    padding: 16px 10px 14px 10px;
+    position: relative;
+  }
+  
+  /* Style the dropdown content (hidden by default) */
+  .dropdown-content {
+	display: none;
+	position: absolute;
+	background-color: #f9f9f9;
+	min-width: 160px;
+	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+	z-index: 1;
+	outline: 0 none transparent;
+	font-family: 'PT Sans', sans-serif;
+	color: #999;
+    line-height: 30px;
+    padding: 16px 10px 14px 10px;
+    position: fixed;
+  }
+  
+  /* Style the links inside the dropdown */
+  .dropdown-content a {
+	float: none;
+	color: black;
+	padding: 12px 16px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+  }
+  
+  /* Add a dark background on topnav links and the dropdown button on hover */
+  .topnav a:hover, .dropdown:hover .dropbtn {
+	background-color: #555;
+	color: white;
+  }
+  
+  /* Add a grey background to dropdown links on hover */
+  .dropdown-content a:hover {
+	background-color: #ddd;
+	color: black;
+  }
+  
+  /* Show the dropdown menu when the user moves the mouse over the dropdown button */
+  .dropdown:hover .dropdown-content {
+	display: block;
+  }
+  
+  /* When the screen is less than 600 pixels wide, hide all links, except for the first one ("Home"). Show the link that contains should open and close the topnav (.icon) */
+  @media screen and (max-width: 600px) {
+	.topnav a:not(:first-child), .dropdown .dropbtn {
+	  display: none;
+	}
+	.topnav a.icon {
+	  float: right;
+	  display: block;
+	}
+	
+	.topnav .menu {
+		display: block;
+	}
+  }
+  
+  /* The "responsive" class is added to the topnav with JavaScript when the user clicks on the icon. This class makes the topnav look good on small screens (display the links vertically instead of horizontally) */
+  @media screen and (max-width: 600px) {
+	.topnav.responsive {
+		position: relative;
+	}
+	.topnav.responsive a.icon {
+	  position: absolute;
+	  right: 0;
+	  top: 0;
+	}
+	.topnav.responsive a {
+	  float: none;
+	  display: block;
+	  text-align: left;
+	}
+	
+	.topnav.responsive .dropdown {float: none;}
+	.topnav.responsive .dropdown-content {position: relative;}
+	.topnav.responsive .dropdown .dropbtn {
+	  display: block;
+	  width: 100%;
+	  text-align: left;
+	}
+  }
+
+  .emptyimg {
+	width: 50%;
+	border-radius: 50%;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.imgdiv{
+	width: 300px;
+}
+
+@media screen and (max-width: 600px) {
+	/* .space {
+		display: none;
+	} */
+	.parentInfo {
+		margin-top: 10px;
+		border-top: solid 2px;
+	}
+}
+
+.shop-cart {
+	padding-top: 70px;
+	padding-bottom: 90px;
+}
+.shop__cart__table {
+	margin-bottom: 30px;
+}
+.shop__cart__table table {
+	width: 100%;
+}
+table {
+	border-collapse: collapse;
+}
+.shop__cart__table thead {
+	border-bottom: 1px solid #f2f2f2;
+}
+.shop__cart__table thead th {
+	font-size: 18px;
+	color: #111111;
+	font-weight: 600;
+	text-transform: uppercase;
+	padding-bottom: 20px;
+}
+th {
+	text-align: inherit;
+}
+.shop__cart__table tbody tr {
+	border-bottom: 1px solid #f2f2f2;
+}
+.shop__cart__table tbody tr .cart__product__item {
+	overflow: hidden;
+	max-width: 100px;
+}
+.shop__cart__table tbody tr td {
+	padding: 30px 0;
+}
+.shop__cart__table tbody tr .cart__product__item .cart__product__item__title {
+	overflow: hidden;
+	padding-top: 23px;
+}
+.shop__cart__table tbody tr .cart__product__item .cart__product__item__title h6 {
+	color: #111111;
+	font-weight: 600;
+}
+h6 {
+	font-size: 16px;
+}
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	color: #111111;
+	font-weight: 400;
+	font-family: "Montserrat", sans-serif;
+}
+.shop__cart__table tbody tr .cart__product__item .cart__product__item__title .rating i {
+	font-size: 10px;
+	color: #e3c01c;
+	margin-right: -4px;
+}
+.fa {
+	display: inline-block;
+	font: normal normal normal 14px/1 FontAwesome;
+		font-size: 14px;
+	font-size: inherit;
+	text-rendering: auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+.shop__cart__table tbody tr td {
+	padding: 10px 0;
+}
+.shop__cart__table tbody tr .cart__price {
+	font-size: 16px;
+	color: #ca1515;
+	font-weight: 600;
+	width: 190px;
+}
+.shop__cart__table tbody tr .cart__quantity {
+	width: 190px;
+}
+.shop__cart__table tbody tr td {
+	padding: 30px 0;
+}
+.shop__cart__table tbody tr .cart__quantity .pro-qty {
+	border: none;
+	padding: 0;
+	width: 110px;
+	border-radius: 0;
+}
+.pro-qty {
+	height: 50px;
+	width: 150px;
+	border: 1px solid #ebebeb;
+	border-radius: 50px;
+	padding: 0 20px;
+	overflow: hidden;
+	display: inline-block;
+}
+.shop__cart__table tbody tr .cart__quantity .pro-qty input {
+	color: #444444;
+}
+.pro-qty input {
+	font-size: 14px;
+	color: #666666;
+	font-weight: 500;
+	border: none;
+	float: left;
+	width: 84px;
+	text-align: center;
+	height: 48px;
+}
+button, input {
+	overflow: visible;
+}
+.shop__cart__table tbody tr .cart__total {
+	font-size: 16px;
+	color: #ca1515;
+	font-weight: 600;
+	width: 150px;
+}
+.shop__cart__table tbody tr .cart__close {
+	text-align: right;
+}
+.shop__cart__table tbody tr .cart__close span {
+	height: 45px;
+	width: 45px;
+	background: #f2f2f2;
+	border-radius: 50%;
+	font-size: 18px;
+	color: #111111;
+	line-height: 44px;
+	text-align: center;
+	display: inline-block;
+	font-weight: 600;
+	cursor: pointer;
+}

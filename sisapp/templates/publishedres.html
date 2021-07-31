@@ -1,0 +1,148 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load my_filter %}
+{% block publishedres %}
+    <!-- main body -->
+	<div style="min-height: 20px;"></div>
+	<div class="container">
+		<div class="row border">
+            <div class="section__title">Published results for each term</div> 
+            <div class="row border">
+                
+                {% for level in levels %}
+                <div class="section">
+                    <div class="section__title">
+                        {{level|to_string|replace_punc|replace_level|levelname}}
+                    </div> 
+                    <div class="section__content">
+                        <div class="panel">
+                            <div class="panel__content">
+                                <div>
+                                    <div>
+                                        <div class="table table--padded">
+                                            <div class="table__section table__section--head">
+                                                <div class="table__row">
+                                                    <div class="table__header">Course code</div> 
+                                                    <div class="table__header">Course Title</div> 
+                                                    <div class="table__header">No. of periods</div> 
+                                                    <div class="table__header">Class score</div> 
+                                                    <div class="table__header">Exam Score</div> 
+                                                    <div class="table__header">Total Score</div> 
+                                                    <div class="table__header">Position</div> 
+                                                    <div class="table__header table__action"></div>
+                                                </div>
+                                            </div>
+                                            <div class="table__section table__section--body">
+                                                
+                                                {% for result in results %}
+                                                {% if result.level == level|to_string|replace_punc|replace_level %}
+                                                <div class="table__row hidden--xs">
+                                                    <div class="table__data table__data--status">
+                                                        <span class="tag ">{{result.subject.code}}</span>
+                                                    </div> 
+                                                    <div class="table__data hidden--xs">{{result.subject}}</div> 
+                                                    <div class="table__data table__data--full">
+                                                        <p class="table__data--main">{{result.subject.period}}</p> 
+                                                        <p class="show--xs table__data--extra"></p>
+                                                    </div> 
+                                                    <div class="table__data hidden--xs">{{result.classScore}}</div> 
+                                                    <div class="table__data table__data--right">
+                                                        <p class="table__data--value">{{result.examscore}}</p> 
+                                                        <div class="show--xs table__data--moreicon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14">
+                                                                <path fill="#1E2852" fill-rule="nonzero" d="M6.885 6.707L.667.121a.376.376 0 0 0-.553 0 .432.432 0 0 0 0 .586L6.056 7 .114 13.293a.432.432 0 0 0 0 .586.378.378 0 0 0 .553 0l6.217-6.586a.43.43 0 0 0 .001-.586z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table__data table__data--right">
+                                                        <p class="table__data--value">{{result.totalscore}}</p> 
+                                                        <div class="show--xs table__data--moreicon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14">
+                                                                <path fill="#1E2852" fill-rule="nonzero" d="M6.885 6.707L.667.121a.376.376 0 0 0-.553 0 .432.432 0 0 0 0 .586L6.056 7 .114 13.293a.432.432 0 0 0 0 .586.378.378 0 0 0 .553 0l6.217-6.586a.43.43 0 0 0 .001-.586z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                    <div class="table__data table__data--right">
+                                                        <p class="table__data--value">{{result.position}}</p> 
+                                                        <div class="show--xs table__data--moreicon">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="14" viewBox="0 0 7 14">
+                                                                <path fill="#1E2852" fill-rule="nonzero" d="M6.885 6.707L.667.121a.376.376 0 0 0-.553 0 .432.432 0 0 0 0 .586L6.056 7 .114 13.293a.432.432 0 0 0 0 .586.378.378 0 0 0 .553 0l6.217-6.586a.43.43 0 0 0 .001-.586z"></path>
+                                                            </svg>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                                <!----> 
+                                                <div class="show--xs border">
+                                                    <div class="customer-info__row">
+                                                        <div class="customer-info__item">
+                                                            <div class="customer-info__item__title">Course code</div> 
+                                                            <div class="customer-info__item__value">
+                                                                <span class="tag">{{result.subject.code}}</span>
+                                                            </div>
+                                                        </div> 
+                                                        <div class="customer-info__item">
+                                                            <div class="customer-info__item__title">Course title</div> 
+                                                            <div class="customer-info__item__value tag">{{result.subject}}</div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="customer-info__row">
+                                                        <div class="customer-info__item">
+                                                            <div class="customer-info__item__title">No. of periods</div> 
+                                                            <div class="customer-info__item__value tag">{{result.subject.period}}</div>
+                                                        </div>
+                                                    </div> 
+                                                    <div class="customer-info__row">
+                                                        <div class="customer-info__item">
+                                                            <div class="customer-info__item__title">Class score</div> 
+                                                            <div class="customer-info__item__value tag">{{result.classScore}}</div>
+                                                        </div> 
+                                                        <div class="customer-info__item">
+                                                            <div class="customer-info__item__title">Exam Score</div> 
+                                                            <div class="customer-info__item__value tag">{{result.examscore}}</div>
+                                                        </div>
+                                                        <div class="customer-info__item">
+                                                            <div class="customer-info__item__title">Total Score</div> 
+                                                            <div class="customer-info__item__value tag">{{result.totalscore}}</div>
+                                                        </div>
+                                                        <div class="customer-info__item">
+                                                            <div class="customer-info__item__title">Position</div> 
+                                                            <div class="customer-info__item__value tag">{{result.position}}</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                                {% endfor %}
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                                <!---->
+                                            </div>
+                                        </div> 
+                                        <!-- <div class="show-more hidden--xs">
+                                            <div class="show-more__text">Show More</div>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
+</body>
+</html> -->

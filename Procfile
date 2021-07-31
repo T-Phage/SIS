@@ -1,0 +1,1 @@
+web: gunicorn SISproject.wsgi --log-file -
